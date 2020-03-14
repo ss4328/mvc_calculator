@@ -164,12 +164,6 @@ public class View extends JFrame implements ActionListener {
             else
                 controller.handleUserInput(s0,"*",s2);
 
-            // set the value of text
-            //displayBar.setText(s0 + s1 + s2 + "=" + te);
-
-            // convert it to string
-            //s0 = Double.toString(te);
-
             s0= s1 = s2 = "";
         }
         else {
@@ -203,21 +197,5 @@ public class View extends JFrame implements ActionListener {
             // set the value of text
             displayBar.setText(s0 + s1 + s2);
         }
-
-
-//        if(e.getSource()==this.b0 || e.getSource()==this.b1 ||e.getSource()==this.b2 ||e.getSource()==this.b3 ||e.getSource()==this.b4 ||e.getSource()==this.b5 ||e.getSource()==this.b6 ||e.getSource()==this.b7 ||e.getSource()==this.b8 ||e.getSource()==this.b8){
-//            val = e.getSource().
-//        }
-
-        //get input 1
-//        String s1 = input1.getText();
-//        //get op
-//        String op = operand.getItemAt(operand.getSelectedIndex());
-//        //get input 2
-//        String s2 = input2.getText();
-//        //call controller's handle method
-//        controller.handleUserInput(s1, op, s2);
     }
-
-
 }

@@ -1,17 +1,13 @@
 package com.shiv;
 
-
-import java.io.File;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-
 public class Driver  {
 
     public static void main(String[] args) {
+        //old way: Just instantiate calculator
         //Calculator c = new Calculator();
         //c.start();
 
-        //now MVC pattern
+        //Now a better way, MVC pattern
         //create model
         Model model = new Model();
         //add view as observer to model
