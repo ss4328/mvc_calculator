@@ -159,6 +159,7 @@ public class View extends JFrame implements ActionListener {
             // if s1,op,s2 are filled, only then compute
             if(!s0.equals("") && !operation.equals("") && !s2.equals("")){
                 compute();
+                controller.sendMessageToServer();
             }
             else if(!s0.equals("") &&operation.equals("")){
                 boolean reset = showResetDialog();

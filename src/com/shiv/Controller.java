@@ -20,6 +20,10 @@ public class Controller {
         this.view.res = String.valueOf(res);
     }
 
+    public void sendMessageToServer(){
+        model.sendMessageToServer();
+    }
+
     public void start() {
         this.view.show();
     }
