@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.shiv.VisitorLib</OriginalElement>
+  <nodes>
+    <node x="31.5" y="157.0">com.shiv.VisitorLib.NodeVisitor</node>
+    <node x="289.0" y="81.0">com.shiv.VisitorLib.Number</node>
+    <node x="140.0" y="81.0">com.shiv.VisitorLib.Operation</node>
+    <node x="162.5" y="0.0">com.shiv.VisitorLib.Node</node>
+    <node x="0.0" y="238.0">com.shiv.VisitorLib.NodeDisplayVisitor</node>
+    <node x="0.0" y="81.0">com.shiv.VisitorLib.Equation</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.shiv.VisitorLib.NodeDisplayVisitor" target="com.shiv.VisitorLib.NodeVisitor">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="com.shiv.VisitorLib.Operation" target="com.shiv.VisitorLib.Node">
+      <point x="0.0" y="-15.5" />
+      <point x="0.0" y="15.5" />
+    </edge>
+    <edge source="com.shiv.VisitorLib.Number" target="com.shiv.VisitorLib.Node">
+      <point x="0.0" y="-15.5" />
+      <point x="340.0" y="56.0" />
+      <point x="232.5" y="56.0" />
+      <point x="28.0" y="15.5" />
+    </edge>
+    <edge source="com.shiv.VisitorLib.Equation" target="com.shiv.VisitorLib.Node">
+      <point x="0.0" y="-15.5" />
+      <point x="60.0" y="56.0" />
+      <point x="176.5" y="56.0" />
+      <point x="-28.0" y="15.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="195.5" y="134.5" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
