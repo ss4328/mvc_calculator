@@ -44,7 +44,7 @@ The Controller is the observer to View (subject). Implicit invokation is employe
 
 - View communicates to model via controller; view has several components that are created using composite pattern.
 - Different events in Controller trigger events that call model for data
-- Server/client atchitecture is used: Calculator is client, calculator_server is server
+- Server/client architecture is used: Calculator is client, calculator_server is server
 	-Client sends equations to server by serializing them, server deserializes and processes them
 - Visitor pattern is used by using abstracting library from extra-credit assignment
 
