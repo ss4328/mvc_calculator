@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="mvc_calculator_server:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/mvc_calculator_server_jar</output-path>
+    <root id="archive" name="mvc_calculator_server.jar">
+      <element id="module-output" name="mvc_calculator_server" />
+    </root>
+  </artifact>
+</component>
