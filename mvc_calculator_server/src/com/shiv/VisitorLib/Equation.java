@@ -19,10 +19,11 @@ public class Equation implements Node, Serializable {
         tokenizeStringEquation(equationPassed);
     }
 
-    public Equation(ArrayList<Node> _eqNodes,ArrayList<Node> _operators,ArrayList<Node> _operands){
+    public Equation(ArrayList<Node> _eqNodes,ArrayList<Node> _operators,ArrayList<Node> _operands, String _equation){
         this.eqNodes = _eqNodes;
         this.operands = _operands;
         this.operators = _operators;
+        equation = _equation;
     }
 
     public String trimSpaces(String equation){
@@ -64,5 +65,7 @@ public class Equation implements Node, Serializable {
             eqNodes.get(i).accept(nodeVisitorPassed);
             nodeVisitorPassed.visit(this);
         }
+        System.out.println("Equation: "+ equation);
     }
 }
+

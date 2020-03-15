@@ -12,6 +12,7 @@ public class Model {
     ArrayList<Node> eqNodes;
     ArrayList<Node> operators;
     ArrayList<Node> operands;
+    String equation;
     public Integer index;
 
 
@@ -44,25 +45,26 @@ public class Model {
                 throw new RuntimeException("impossible operator");
         }
 
-        sendMessageToServer(i1,op,i2);
+        sendMessageToServer(i1,op,i2,res);
 
         return res;
     }
 
-    public void sendMessageToServer(int i1, String op, int i2){
+    public void sendMessageToServer(int i1, String op, int i2,int res){
         try{
             Node i1Node = new Number(Integer.toString(i1));
             Node i2Node = new Number(Integer.toString(i2));
             Node operNode = new Operation(op);
 
             eqNodes.add(i1Node);
-            eqNodes.add(i2Node);
             eqNodes.add(operNode);
+            eqNodes.add(i2Node);
+            equation = Integer.toString(i1) + op + Integer.toString(i2) + "=" + Integer.toString(res) ;
             operators.add(operNode);
             operands.add(i1Node);
             operands.add(i2Node);
 
-            Equation eq = new Equation(eqNodes,operands,operators);
+            Equation eq = new Equation(eqNodes,operands,operators,equation);
             Client c = new Client();
             c.sendToServer(eq);
             flushLists();
