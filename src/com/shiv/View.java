@@ -1,23 +1,24 @@
 package com.shiv;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class View extends JFrame implements ActionListener {
 
+    private JTextField displayBar;
     JButton b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, ba, bs, bd, bm, beq, bCan;
-    String s0, s1, s2;
+    //variables for storing the operations, and answer
+    String s0, operation, s2;
+    String res;
 
     Controller controller;
-    //JLabel result;
 
     View(){
-        s0=s1=s2="";
+        displayBar = new JTextField(16);
+        reset();
+        res="";
     }
-
-    static JTextField displayBar;
 
     public void setController(Controller controller) {
         this.controller = controller;
@@ -120,7 +121,7 @@ public class View extends JFrame implements ActionListener {
         beq.setBounds(180,310,50,40);
         ba.setBounds(250,310,50,40);
 
-        bCan.setBounds(60,380,100,40);
+        bCan.setBounds(40,310,50,40);
     }
 
     public void setResult(String res) {
@@ -130,72 +131,113 @@ public class View extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Integer val = 0;
-        String s = e.getActionCommand();
+        String buttonVal = e.getActionCommand();
         // if the value is a number
-        if ((s.charAt(0) >= '0' && s.charAt(0) <= '9') || s.charAt(0) == '.') {
+        if ((buttonVal.charAt(0) >= '0' && buttonVal.charAt(0) <= '9')) {
             // if operand is present then add to second no
-            if (!s1.equals(""))
-                s2 = s2 + s;
+            if(!res.equals("")){
+                reset();
+                res="";
+            }
+
+            if (!operation.equals(""))
+                s2 = s2 + buttonVal;
             else
-                s0 = s0 + s;
+                s0 = s0 + buttonVal;
 
             // set the value of text
-            displayBar.setText(s0 + s1 + s2);
+            displayBar.setText(s0 + operation + s2);
         }
-
-        else if (s.charAt(0) == 'C') {
+        else if (buttonVal.charAt(0) == 'C') {
             // clear the one letter
-            s0 = s1 = s2 = "";
+            reset();
 
             // set the value of text
             displayBar.setText("");
         }
-        else if (s.charAt(0) == '=') {
-
-            double te;
-
-            // store the value in 1st
-            if (s1.equals("+"))
-                controller.handleUserInput(s0,"+",s2);
-            else if (s1.equals("-"))
-                controller.handleUserInput(s0,"-",s2);
-            else if (s1.equals("/"))
-                controller.handleUserInput(s0,"/",s2);
-            else
-                controller.handleUserInput(s0,"*",s2);
-
-            s0= s1 = s2 = "";
+        else if (buttonVal.charAt(0) == '=') {
+            // if s1,op,s2 are filled, only then compute
+            if(!s0.equals("") && !operation.equals("") && !s2.equals("")){
+                compute();
+            }
+            else if(!s0.equals("") &&operation.equals("")){
+                boolean reset = showResetDialog();
+                //user chooses not to reset
+                if(reset){
+                    operation = buttonVal;
+                    displayBar.setText(s0 + operation + s2);
+                }
+            }
         }
+
+        //operation key pressed
         else {
-            // if there was no operand
-            if (s1.equals("") || s2.equals(""))
-                s1 = s;
-                // else evaluate
-            else {
-                double te;
-
-                // store the value in 1st
-                if (s1.equals("+"))
-                    controller.handleUserInput(s0,"+",s2);
-                else if (s1.equals("-"))
-                    controller.handleUserInput(s0,"-",s2);
-                else if (s1.equals("/"))
-                    controller.handleUserInput(s0,"/",s2);
-                else
-                    controller.handleUserInput(s0,"*",s2);
-
-                // convert it to string
-                //s0 = Double.toString(te);
-
-                // place the operator
-                s1 = s;
-
-                // make the operand blank
-                s2 = "";
+            //chain operation case
+            if(!s0.equals("") && !operation.equals("") && !s2.equals("")){
+                compute();
+                operation = buttonVal;
+                s0=displayBar.getText();
+                s2="";
+                displayBar.setText(s0 + operation + s2);
+                res="";
             }
 
-            // set the value of text
-            displayBar.setText(s0 + s1 + s2);
+            else if (operation.equals("") && s2.equals("")){
+                operation = buttonVal;
+                // set the value of text
+                displayBar.setText(s0 + operation + s2);
+            }
+            else if (!operation.equals("")){
+                boolean reset = showResetDialog();
+                //user chooses not to reset
+                if(reset){
+                    operation = buttonVal;
+                    displayBar.setText(s0 + operation + s2);
+                }
+                //user chooses to reset
+                else{
+                    //condition handled inside dialog box
+                }
+            }
+                // else evaluate
+            else {
+                compute();
+                // place the operator
+                operation = buttonVal;
+                // set the value of text
+                displayBar.setText(s0 + operation + s2);
+            }
         }
+    }
+
+    public void compute(){
+        if (operation.equals("+"))
+            controller.handleUserInput(s0,"+",s2);
+        else if (operation.equals("-"))
+            controller.handleUserInput(s0,"-",s2);
+        else if (operation.equals("/"))
+            controller.handleUserInput(s0,"/",s2);
+        else
+            controller.handleUserInput(s0,"*",s2);
+    }
+
+   public boolean showResetDialog(){
+        boolean res = true;
+       int dialogButton = JOptionPane.YES_NO_OPTION;
+       if (JOptionPane.showConfirmDialog(null, "Do you want to accept new operation? Choosing No will reset the calculator", "WARNING",
+               JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+           // yes option
+       } else {
+           // no option
+           s0= operation =s2="";
+           displayBar.setText("");
+           res=false;
+       }
+       return res;
+   }
+
+    public void reset(){
+        s0= operation =s2="";
+        displayBar.setText("");
     }
 }

@@ -17,6 +17,7 @@ public class Controller {
         int i2 = Integer.parseInt(s2);
         int res = this.model.calculate(i1, op, i2);
         this.view.setResult(String.valueOf(res));
+        this.view.res = String.valueOf(res);
     }
 
     public void start() {
