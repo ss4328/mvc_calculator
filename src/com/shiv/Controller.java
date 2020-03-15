@@ -2,12 +2,13 @@ package com.shiv;
 
 
 
-public class Controller {
+public class Controller extends State {
 
     Model model;
     View view;
 
     public Controller(Model model, View view) {
+        super();
         this.model = model;
         this.view = view;
     }

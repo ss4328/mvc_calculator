@@ -32,7 +32,7 @@ Operation is therefore a Concrete Class of type Node.
 Number is also a Concrete Class of type Node. 
 
 ### State Pattern
-Each variable needed in calculator(s1,op,s2) maintains its own state. 
+Each variable needed in calculator(s1,op,s2) maintains its own state. Class State does this job.
 
 ### Observer Pattern
 The Controller is the observer to View (subject). Implicit invokation is employed via builtin ActionEvents and ActionListeners whenever an event triggers.
